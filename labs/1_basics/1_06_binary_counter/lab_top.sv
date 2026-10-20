@@ -123,4 +123,93 @@ module lab_top
 
     */
 
+    // todo: write module for presed bottuns
+    // 1. One key is used to increment, another to decrement.
+    /*
+    wire inc_key = key[0];
+    wire dec_key = key[0];
+
+    logic inc_key_r;
+    logic dec_key_r;
+    logic [w_led - 1:0] cnt;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            inc_key_r <= '0;
+        else
+            inc_key_r <= inc_key;
+
+    wire inc_key_pressed = ~ inc_key & inc_key_r;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            cnt <= '0;
+        else if (inc_key_pressed)
+            cnt <= cnt + 1'd1;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            dec_key_r <= '0;
+        else
+            dec_key_r <= dec_key;
+
+    wire dec_key_pressed = ~ dec_key & dec_key_r;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            cnt <= '0;
+        else if (dec_key_pressed)
+            cnt <= cnt - 1'd1;
+
+    assign led = w_led' (cnt);
+    */
+
+    // 2. Two counters controlled by different keys
+    // displayed in different groups of LEDs.
+    /*
+    wire  first_key  = key[0];
+    wire  second_key = key[1];
+
+    logic first_key_r;
+    logic second_key_r;
+    logic [w_led - 1 : w_led / 2] cnt_first;
+    logic [w_led / 2 - 1 : 0]     cnt_second;
+
+    //first key press part
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            first_key_r <= '0;
+        else
+            first_key_r <= first_key;
+
+    wire first_key_pressed = ~ first_key & first_key_r;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            cnt_first <= '0;
+        else if (first_key_pressed)
+            cnt_first <= cnt_first + 1'd1;
+
+    assign led[w_led - 1 : w_led / 2] = cnt_first;
+
+    //second key press part
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            second_key_r <= '0;
+        else
+            second_key_r <= second_key;
+
+    wire second_key_pressed = ~ second_key & second_key_r;
+
+    always_ff @ (posedge clk or posedge rst)
+        if (rst)
+            cnt_second <= '0;
+        else if (second_key_pressed)
+            cnt_second <= cnt_second + 1'd1;
+
+    assign led[w_led - 1 : w_led / 2] = cnt_second;
+    */
+
 endmodule
