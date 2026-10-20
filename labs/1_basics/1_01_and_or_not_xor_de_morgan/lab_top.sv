@@ -110,7 +110,7 @@ module lab_top
     // without using "^" operation.
     // Use only operations "&", "|", "~" and parenthesis, "(" and ")".
 
-    assign led [3] = (~a & b) || (a & ~b);
+    assign led [3] = (~a & b) | (a & ~b);
 
     // Exercise 3: Create an illustration to De Morgan's laws:
     //
